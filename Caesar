@@ -1,0 +1,47 @@
+#include<stdio.h>
+#include<cs50.h>
+#include<string.h>
+#include<stdlib.h>
+#include<ctype.h>
+
+
+int main(int argc , char** argv)
+{
+    if (argc!=2)
+    {
+        printf("please follow the procedure!\n");
+        return 1;
+    }
+    int k = atoi(argv[1]);
+
+    if (k<=0)
+    {
+        printf("Usage: ./ceaser key\n");
+        return 1;
+    }
+
+    string plaintext = get_string("plaintext:");
+
+    // loops over plaintext and output cyphertext
+
+    printf("ciphertext:");
+    for(int i=0, len=strlen(plaintext); i<len ; i++)
+    {
+        //(plaintext[i] - 'a' + k) % 26 +'a'
+        if (islower(plaintext[i]))
+        {
+            printf("%c", (plaintext[i] - 'a' + k) % 26 +'a');
+        }
+
+        else if(isupper(plaintext[i]))
+        {
+            printf("%c",(plaintext[i] - 'A' + k) % 26 +'A' );
+        }
+
+        else
+        {
+            printf("%c", plaintext[i]);
+        }
+    }
+    printf("\n");
+}
